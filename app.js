@@ -11,7 +11,7 @@ const search = document.querySelector("#search");
 const main = document.querySelector("#main");
 
 getMovies(API_URL);
-
+showMovies();
 async function getMovies(url) {
   const res = await fetch(url);
   const data = await res.json();
