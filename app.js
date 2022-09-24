@@ -72,6 +72,7 @@ function showMovies() {
     `;
     main.appendChild(movieEl);
   });
+  storage = localStorage.setItem("storage" , JSON.stringify(storage));
 };
 
 function getClassByRate(vote) {
