@@ -23,7 +23,7 @@ async function getMovies(url) {
     storage = JSON.parse(localStorage.getItem("storage"));
   }
 
-  showMovies(storage);
+  showMovies();
 }
 
 form.addEventListener("input", (e) => {
@@ -39,10 +39,18 @@ form.addEventListener("input", (e) => {
   }
 });
 
-function showMovies(movies) {
+function showMovies() {
+  
+   let storage;
+  if (!localStorage.getItem("storage")) {
+    storage = localStorage.setItem("storage" , JSON.stringify(data.results));
+  } else {
+    storage = JSON.parse(localStorage.getItem("storage"));
+  }
+  
   main.innerHTML = "";
 
-  movies.forEach((movie) => {
+  storage.forEach((movie) => {
     const { title, overview, vote_average, poster_path } = movie;
 
     const movieEl = document.createElement("div");
