@@ -23,7 +23,7 @@ async function getMovies(url) {
     storage = JSON.parse(localStorage.getItem("storage"));
   }
 
-  showMovies(data.results);
+  showMovies(storage);
 }
 
 form.addEventListener("input", (e) => {
