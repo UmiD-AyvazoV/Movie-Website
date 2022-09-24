@@ -10,9 +10,7 @@ const form = document.querySelector("#form");
 const search = document.querySelector("#search");
 const main = document.querySelector("#main");
 
-document.addEventListener("DOMContentLoaded", function () {
-    getMovies(API_URL);
-});
+getMovies(API_URL);
 
 async function getMovies(url) {
   const res = await fetch(url);
