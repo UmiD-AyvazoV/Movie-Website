@@ -15,6 +15,13 @@ getMovies(API_URL);
 async function getMovies(url) {
   const res = await fetch(url);
   const data = await res.json();
+  
+  let storage;
+  if (!localStorage.getItem("storage")) {
+    storage = localStorage.setItem("storage" , JSON.stringify(data.results));
+  } else {
+    storage = JSON.parse(localStorage.getItem("storage"));
+  }
 
   showMovies(data.results);
 }
