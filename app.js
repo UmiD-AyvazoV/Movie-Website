@@ -23,7 +23,7 @@ async function getMovies(url) {
     storage = JSON.parse(localStorage.getItem("storage"));
   }
 
-  showMovies();
+  showMovies(storage);
 }
 
 form.addEventListener("input", (e) => {
@@ -39,14 +39,7 @@ form.addEventListener("input", (e) => {
   }
 });
 
-function showMovies() {
-  
-   let storage;
-  if (!localStorage.getItem("storage")) {
-    storage = localStorage.setItem("storage" , JSON.stringify(data.results));
-  } else {
-    storage = JSON.parse(localStorage.getItem("storage"));
-  }
+function showMovies(storage) {
   
   main.innerHTML = "";
 
