@@ -18,7 +18,7 @@ async function getMovies(url) {
   
   let storage;
   if (!localStorage.getItem("storage")) {
-    storage = localStorage.setItem("storage" , JSON.stringify(data.results));
+    storage = localStorage.setItem("storage" , data.results);
   } else {
     storage = JSON.parse(localStorage.getItem("storage"));
   }
