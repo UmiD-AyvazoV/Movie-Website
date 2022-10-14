@@ -34,13 +34,12 @@ form.addEventListener("input", (e) => {
   }
 });
 
-function showMovies(movies) {
-
-  let storage = JSON.parse(localStorage.getItem("movies"));
+function showMovies(storage) {
+  let getStorage = JSON.parse(localStorage.getItem('movies'));
 
   main.innerHTML = "";
 
-  storage.forEach((movie) => {
+  getStorage.forEach((movie) => {
     const { title, overview, vote_average, poster_path } = movie;
 
     const movieEl = document.createElement("div");
@@ -61,6 +60,7 @@ function showMovies(movies) {
         </div>
     `;
     main.appendChild(movieEl);
+    localStorage.setItem('movies' , JSON.stringify(main));
 });
 };
 
