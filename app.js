@@ -15,9 +15,11 @@ getMovies(API_URL);
 async function getMovies(url) {
   const res = await fetch(url);
   const data = await res.json();
-  
-  showMovies(data.results);
-}
+
+  let storage = localStorage.setItem('movies' , JSON.stringify(data.results) );
+
+  showMovies(storage);
+};
 
 form.addEventListener("input", (e) => {
   e.preventDefault();
@@ -33,10 +35,12 @@ form.addEventListener("input", (e) => {
 });
 
 function showMovies(movies) {
-  
+
+  let storage = JSON.parse(localStorage.getItem("movies"));
+
   main.innerHTML = "";
 
-  movies.forEach((movie) => {
+  storage.forEach((movie) => {
     const { title, overview, vote_average, poster_path } = movie;
 
     const movieEl = document.createElement("div");
@@ -57,14 +61,14 @@ function showMovies(movies) {
         </div>
     `;
     main.appendChild(movieEl);
-  });
+});
 };
 
 function getClassByRate(vote) {
   if (vote >= 8) {
     return "green";
   } else if (vote >= 5) {
-    return "orange";
+    return "blue";
   } else {
     return "red";
   }
