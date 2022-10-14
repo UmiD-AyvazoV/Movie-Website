@@ -16,10 +16,8 @@ async function getMovies(url) {
   const res = await fetch(url);
   const data = await res.json();
 
-  let storage = localStorage.setItem('movies' , JSON.stringify(data.results) );
-
-  showMovies(storage);
-};
+  showMovies(data.results);
+}
 
 form.addEventListener("input", (e) => {
   e.preventDefault();
@@ -34,12 +32,10 @@ form.addEventListener("input", (e) => {
   }
 });
 
-function showMovies(storage) {
-  let getStorage = JSON.parse(localStorage.getItem('movies'));
-
+function showMovies(movies) {
   main.innerHTML = "";
 
-  getStorage.forEach((movie) => {
+  movies.forEach((movie) => {
     const { title, overview, vote_average, poster_path } = movie;
 
     const movieEl = document.createElement("div");
@@ -60,16 +56,15 @@ function showMovies(storage) {
         </div>
     `;
     main.appendChild(movieEl);
-    localStorage.setItem('movies' , JSON.stringify(main));
-});
-};
+  });
+}
 
 function getClassByRate(vote) {
   if (vote >= 8) {
     return "green";
   } else if (vote >= 5) {
-    return "blue";
+    return "orange";
   } else {
     return "red";
   }
-};
+}
